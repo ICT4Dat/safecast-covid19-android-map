@@ -1,0 +1,1 @@
+# safecast-covid19-android-map
