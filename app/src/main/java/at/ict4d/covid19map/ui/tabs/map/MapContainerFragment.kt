@@ -92,6 +92,8 @@ class MapContainerFragment : BaseFragment<MapContainerFragmentBinding, MapContai
 
         model.mapData.observe(viewLifecycleOwner) { resource ->
 
+            handleApiResponse(resource, swipeRefreshLayout = binding.swipeToRefresh)
+
             // *******************
             // TODO: continue here
             // *******************
