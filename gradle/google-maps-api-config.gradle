@@ -1,0 +1,85 @@
+ext {
+    googleMapsApiConfig = new GoogleMapsApiConfigLogic(project)
+}
+
+/*
+Before you run your application, you need a Google Maps API key.
+
+To get one, follow this link, follow the directions and press "Create" at the end:
+
+https://console.developers.google.com/flows/enableapi?apiid=maps_android_backend&keyType=CLIENT_SIDE_ANDROID&r=DE:4A:F0:B1:F5:F4:00:88:B6:E0:03:3E:31:1F:11:88:3F:43:0D:8B%3Bat.ict4d.covid19map
+
+You can also add your credentials to an existing key, using these values:
+
+Package name:
+at.ict4d.covid19map
+
+SHA-1 certificate fingerprint:
+DE:4A:F0:B1:F5:F4:00:88:B6:E0:03:3E:31:1F:11:88:3F:43:0D:8B
+
+Alternatively, follow the directions here:
+https://developers.google.com/maps/documentation/android/start#get-key
+
+Once you have your key (it starts with "AIza") create a file with the name "google-maps-api.properties" in the gradle folder:
+gradle/google-maps-api.properties
+
+Put in 2 properties:
+googleMapsApiKeyDebug:[THE KEY YOU JUST CREATED]
+googleMapsApiKeyRelease:[YOUR RELEASE GOOGLE MAPS KEY] (if you are just developing and not planning to publish then fill in "YOUR_RELEASE_KEY_HERE")
+
+"gradle/google-maps-api.properties" example:
+googleMapsApiKeyDebug=AIzaFJKLJKsdLFDDsjlkdfDFJKLdjkf
+googleMapsApiKeyRelease=YOUR_RELEASE_KEY_HERE
+
+Sync your project and build.
+*/
+
+class GoogleMapsApiConfigLogic {
+
+    public final keyGoogleMapsApiKeyDebug = "googleMapsApiKeyDebug"
+    public final keyGoogleMapsApiKeyRelease = "googleMapsApiKeyRelease"
+    private final configGoogleMapsApiPropsFileName = "gradle/google-maps-api.properties"
+
+    public final props
+
+    private final project
+
+    GoogleMapsApiConfigLogic(project) {
+        this.project = project
+        this.props = loadGoogleMapsApiProperties()
+    }
+
+    def loadGoogleMapsApiProperties() {
+
+        Properties propertiesObj
+
+        if ((propertiesObj = loadFromProperties("$project.rootDir/$configGoogleMapsApiPropsFileName")) != null) {
+            project.logger.quiet("google-maps-api-config: use local properties file for Google Maps API")
+            return propertiesObj
+        } else {
+            propertiesObj = new Properties()
+            propertiesObj.put(keyGoogleMapsApiKeyDebug, "YOUR_KEY_HERE")
+            propertiesObj.put(keyGoogleMapsApiKeyRelease, "YOUR_KEY_HERE")
+        }
+
+        project.logger.quiet("google-maps-api-config: no API key found for Google Maps")
+        return propertiesObj
+    }
+
+    def loadFromProperties(fileName) {
+        Properties props = new Properties()
+        File propFile = new File(fileName)
+
+        if (propFile.exists()) {
+            props.load(new FileInputStream(propFile))
+            if (props.get(keyGoogleMapsApiKeyDebug) != null &&
+                    props.get(keyGoogleMapsApiKeyRelease) != null) {
+                project.logger.quiet("google-maps-api-config: use $fileName for Google Maps API")
+                return props
+            }
+        } else {
+            project.logger.quiet("google-maps-api-config: $propFile does not exist for Google Maps API")
+        }
+        return null
+    }
+}
