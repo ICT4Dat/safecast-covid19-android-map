@@ -1,0 +1,2 @@
+rootProject.name='Safecast Covid-19 Map'
+include ':app'

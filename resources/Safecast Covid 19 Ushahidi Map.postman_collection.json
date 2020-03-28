@@ -1,0 +1,78 @@
+{
+	"info": {
+		"_postman_id": "beca6378-c0c6-42c6-8781-a4d5f7717a1a",
+		"name": "Safecast Covid 19 Ushahidi Map",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get all posts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/v3/posts",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v3",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Token",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/oauth/token/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"oauth",
+						"token",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "4b318575-3490-4f81-8081-cd5061f5d28c",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "82ab2529-6e95-48cb-890c-e7cb5d988613",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "2a16b019-c0c3-4acf-aeb9-a456a2a15c6a",
+			"key": "baseUrl",
+			"value": "https://covid19map.safecast.org/",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}

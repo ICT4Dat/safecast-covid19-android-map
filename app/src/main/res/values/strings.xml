@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Safecast Covid-19 Map</string>
+    <string name="title_activity_maps">Map</string>
+</resources>
