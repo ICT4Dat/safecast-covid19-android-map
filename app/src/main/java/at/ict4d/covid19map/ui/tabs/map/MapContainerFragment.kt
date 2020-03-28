@@ -6,6 +6,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.widget.SeekBar
+import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import at.ict4d.covid19map.R
 import at.ict4d.covid19map.databinding.MapContainerFragmentBinding
@@ -88,6 +89,15 @@ class MapContainerFragment : BaseFragment<MapContainerFragmentBinding, MapContai
                 requireActivity()
             )
         )
+
+        model.mapData.observe(viewLifecycleOwner) { resource ->
+
+            // *******************
+            // TODO: continue here
+            // *******************
+
+            Timber.d("Resource: $resource")
+        }
 
 //        model.mapDataSet.observe(viewLifecycleOwner) { resource ->
 //
