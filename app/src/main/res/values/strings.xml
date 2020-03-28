@@ -1,4 +1,17 @@
 <resources>
     <string name="app_name">Safecast Covid-19 Map</string>
     <string name="title_activity_maps">Map</string>
+    <string name="update_error">Something went wrong, please try again.</string>
+    <string name="settings">Settings</string>
+    <string name="info">Info</string>
+    <string name="app_version">App Version</string>
+    <string name="data_source">Data Source</string>
+    <string name="data_source_summary">TODO</string>
+    <string name="icon_design">Design by Chloé Zimmermann</string>
+    <string name="implemented_by">Implemented by …</string>
+    <string name="tab_map">Map</string>
+    <string name="tab_list">Country List</string>
+    <string name="refresh">Refresh</string>
+    <string name="software_licences">Software Licences</string>
+    <string name="timeline">Timeline</string>
 </resources>
