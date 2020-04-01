@@ -20,5 +20,4 @@ jobs:
         ./gradlew clean testDebugUnitTest lint --stacktrace
     - name: buildDebug
       run: |
-        cd ICT4DNews
         ./gradlew clean assembleDebug --stacktrace
