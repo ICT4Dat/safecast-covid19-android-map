@@ -19,9 +19,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import at.ict4d.covid19map.R
-import at.ict4d.covid19map.utils.AutoClearedValue
 import at.ict4d.covid19map.server.Resource
 import at.ict4d.covid19map.server.Status
+import at.ict4d.covid19map.utils.AutoClearedValue
 import at.ict4d.covid19map.utils.setVisible
 import org.koin.android.viewmodel.ext.android.viewModel
 import timber.log.Timber
@@ -61,16 +61,22 @@ abstract class BaseFragment<B : ViewDataBinding, V : ViewModel>(
         swipeRefreshLayout?.isRefreshing = resource.status == Status.LOADING
         progressbar?.setVisible(resource.status == Status.LOADING)
 
-        errorTextView?.setVisible((resource.status == Status.ERROR || resource.status == Status.SUCCESS) && (resource.data == null || (resource.data as? List<*>).isNullOrEmpty()))
+        errorTextView?.setVisible((resource.status == Status.ERROR ||
+            resource.status == Status.SUCCESS) && (resource.data == null ||
+            (resource.data as? List<*>).isNullOrEmpty()))
 
         when (resource.status) {
-            Status.SUCCESS -> Timber.d("${this::class.java.simpleName} repository update success with Status ${resource.status}")
+            Status.SUCCESS ->
+                Timber.d("${this::class.java.simpleName} repository update " +
+                    "success with Status ${resource.status}")
             Status.ERROR -> Toast.makeText(
                 requireContext(),
                 R.string.update_error,
                 Toast.LENGTH_LONG
             ).show()
-            Status.LOADING -> Timber.d("${this::class.java.simpleName} repository loading with Status ${resource.status}")
+            Status.LOADING ->
+                Timber.d("${this::class.java.simpleName} repository " +
+                    "loading with Status ${resource.status}")
         }
     }
 

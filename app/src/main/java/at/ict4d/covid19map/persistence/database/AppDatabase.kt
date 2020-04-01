@@ -19,9 +19,7 @@ const val DATABASE_NAME = "safecast_map_database"
     ]
 )
 @TypeConverters(Converters::class)
-abstract class AppDatabase : RoomDatabase() {
-
-}
+abstract class AppDatabase : RoomDatabase()
 
 class Converters {
 
