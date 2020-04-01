@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Safecast Covid-19 Map</string>
+    <string name="app_name">COVID-19 Map</string>
     <string name="title_activity_maps">Map</string>
     <string name="update_error">Something went wrong, please try again.</string>
     <string name="settings">Settings</string>
