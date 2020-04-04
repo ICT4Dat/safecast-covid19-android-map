@@ -6,5 +6,5 @@ import org.koin.dsl.module
 val repositoryModule = module {
 
     // Repositories
-    single { SafecastMapDataSetRepository() }
+    single { SafecastMapDataSetRepository(get(), get()) }
 }

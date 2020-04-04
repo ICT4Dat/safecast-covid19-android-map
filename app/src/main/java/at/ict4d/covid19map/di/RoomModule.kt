@@ -14,4 +14,6 @@ val roomModule = module {
             .fallbackToDestructiveMigrationOnDowngrade()
             .build()
     }
+
+    single { get<AppDatabase>().getSafecastMapDataSetDao() }
 }
