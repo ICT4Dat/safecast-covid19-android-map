@@ -22,7 +22,7 @@ import org.threeten.bp.LocalDate
 import org.threeten.bp.format.DateTimeFormatter
 import org.threeten.bp.format.FormatStyle
 import timber.log.Timber
-import java.util.*
+import java.util.Locale
 
 class MapContainerFragment : BaseFragment<MapContainerFragmentBinding, MapContainerViewModel>(
     R.layout.map_container_fragment,
@@ -134,7 +134,8 @@ class MapContainerFragment : BaseFragment<MapContainerFragmentBinding, MapContai
         R.id.menu_settings -> {
             findNavController().navigateSafe(
                 R.id.tabContainerFragment,
-                TabContainerFragmentDirections.actionTabContainerFragmentToSettingsContainerFragment()
+                TabContainerFragmentDirections
+                    .actionTabContainerFragmentToSettingsContainerFragment()
             )
             true
         }

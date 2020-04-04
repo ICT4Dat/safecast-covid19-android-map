@@ -3,7 +3,11 @@ package at.ict4d.covid19map
 import android.app.Application
 import android.content.Context
 import androidx.multidex.MultiDex
-import at.ict4d.covid19map.di.*
+import at.ict4d.covid19map.di.apiModule
+import at.ict4d.covid19map.di.appModule
+import at.ict4d.covid19map.di.repositoryModule
+import at.ict4d.covid19map.di.roomModule
+import at.ict4d.covid19map.di.viewModelModule
 import com.jakewharton.threetenabp.AndroidThreeTen
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
