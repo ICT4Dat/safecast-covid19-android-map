@@ -6,9 +6,9 @@
     <string name="info">Info</string>
     <string name="app_version">App Version</string>
     <string name="data_source">Data Source</string>
-    <string name="data_source_summary">TODO</string>
+    <string name="data_source_summary">Data collected and provided by Safecast.</string>
     <string name="icon_design">Design by Chloé Zimmermann</string>
-    <string name="implemented_by">Implemented by …</string>
+    <string name="implemented_by">Implemented by ICT4D.at - Paul Spiesberger</string>
     <string name="tab_map">Map</string>
     <string name="tab_list">Country List</string>
     <string name="refresh">Refresh</string>

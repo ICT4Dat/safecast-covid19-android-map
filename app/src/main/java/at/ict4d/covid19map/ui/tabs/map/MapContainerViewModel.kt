@@ -10,4 +10,6 @@ class MapContainerViewModel(
 ) : ViewModel() {
 
     val mapData = safecastMapDataSetRepository.getSafecastMapDataSets().asLiveData(Dispatchers.IO)
+
+    var lastClickedMarkerTitle: String? = null
 }

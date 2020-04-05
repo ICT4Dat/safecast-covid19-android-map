@@ -10,24 +10,27 @@ import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import at.ict4d.covid19map.R
 import at.ict4d.covid19map.databinding.MapContainerFragmentBinding
+import at.ict4d.covid19map.models.SafecastMapDataSet
 import at.ict4d.covid19map.ui.base.BaseFragment
 import at.ict4d.covid19map.ui.tabs.TabContainerFragmentDirections
+import at.ict4d.covid19map.utils.browseCustomTab
 import at.ict4d.covid19map.utils.navigateSafe
 import at.ict4d.covid19map.utils.setVisible
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
+import com.google.android.gms.maps.model.MarkerOptions
 import org.threeten.bp.LocalDate
 import org.threeten.bp.format.DateTimeFormatter
 import org.threeten.bp.format.FormatStyle
-import timber.log.Timber
 import java.util.Locale
 
 class MapContainerFragment : BaseFragment<MapContainerFragmentBinding, MapContainerViewModel>(
     R.layout.map_container_fragment,
     MapContainerViewModel::class
-), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
+), OnMapReadyCallback, GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener {
 
     private lateinit var map: GoogleMap
 
@@ -78,7 +81,7 @@ class MapContainerFragment : BaseFragment<MapContainerFragmentBinding, MapContai
         })
 
         // TODO: Remove this line and replace with real data to display the Seekbar with dates
-        binding.daysLoaded = true
+        binding.daysLoaded = false
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
@@ -94,36 +97,26 @@ class MapContainerFragment : BaseFragment<MapContainerFragmentBinding, MapContai
 
             handleApiResponse(resource, swipeRefreshLayout = binding.swipeToRefresh)
 
-            // *******************
-            // TODO: continue here
-            // *******************
+            map.clear()
+            map.setOnMarkerClickListener(this)
+            map.setOnInfoWindowClickListener(this)
 
-            Timber.d("Resource: $resource")
+            var marker: Marker
+            resource.data?.forEach { data ->
+                marker = map.addMarker(
+                    MarkerOptions()
+                        .position(LatLng(data.latitude, data.longitude))
+                        .title(data.title)
+                )
+                marker.tag = data
+
+                if (model.lastClickedMarkerTitle != null &&
+                    data.title == model.lastClickedMarkerTitle
+                ) {
+                    marker.showInfoWindow()
+                }
+            }
         }
-
-//        model.mapDataSet.observe(viewLifecycleOwner) { resource ->
-//
-//            handleApiResponse(resource, swipeRefreshLayout = binding.swipeToRefresh)
-//
-//            map.clear()
-//            map.setOnMarkerClickListener(this)
-//
-//            var marker: Marker
-//            resource.data?.forEach { data ->
-//                if (data.confirmed > 0 || data.deaths > 0 || data.recovered > 0) {
-//                    marker = map.addMarker(
-//                        MarkerOptions()
-//                            .position(LatLng(data.latitude, data.longitude))
-//                            .title(data.countryName)
-//                    )
-//                    marker.tag = data
-//
-//                    if (model.lastClickedMarkerTitle != null && data.countryName == model.lastClickedMarkerTitle) {
-//                        marker.showInfoWindow()
-//                    }
-//                }
-//            }
-//        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -140,14 +133,20 @@ class MapContainerFragment : BaseFragment<MapContainerFragmentBinding, MapContai
             true
         }
         R.id.menu_refresh -> {
-            // trigger refresh
+            // TODO: trigger refresh (enable menu item in XML)
             true
         }
         else -> super.onOptionsItemSelected(item)
     }
 
     override fun onMarkerClick(marker: Marker?): Boolean {
-        Timber.d("clicked on marker")
+        model.lastClickedMarkerTitle = marker?.title
         return false
+    }
+
+    override fun onInfoWindowClick(marker: Marker?) {
+        (marker?.tag as? SafecastMapDataSet)?.let { data ->
+            requireActivity().browseCustomTab(data.urlPost)
+        }
     }
 }
