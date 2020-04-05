@@ -1,10 +1,10 @@
 package at.ict4d.covid19map.di
 
-import at.ict4d.covid19map.server.repository.SafecastMapDataSetRepository
+import at.ict4d.covid19map.server.repository.SafecastMapPostRepository
 import org.koin.dsl.module
 
 val repositoryModule = module {
 
     // Repositories
-    single { SafecastMapDataSetRepository() }
+    single { SafecastMapPostRepository(get(), get()) }
 }

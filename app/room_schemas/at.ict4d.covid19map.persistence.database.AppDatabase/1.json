@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "5e3c6b69651aacf7beb0ae3cce013688",
+    "identityHash": "c39b49dd87675f180fb657bbe08f979d",
     "entities": [
       {
-        "tableName": "safecast_map_data_set",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `url` TEXT NOT NULL, `color` TEXT NOT NULL, `title` TEXT NOT NULL, `content` TEXT NOT NULL, `slug` TEXT NOT NULL, `locale` TEXT NOT NULL, `latitude` REAL NOT NULL, `longitude` REAL NOT NULL, `created` TEXT NOT NULL, `dateOfTest` TEXT NOT NULL, `age` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "tableName": "safecast_map_posts",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `url_json` TEXT NOT NULL, `color` TEXT NOT NULL, `title` TEXT NOT NULL, `content` TEXT NOT NULL, `slug` TEXT NOT NULL, `locale` TEXT NOT NULL, `latitude` REAL NOT NULL, `longitude` REAL NOT NULL, `created` TEXT NOT NULL, `date_of_test` TEXT NOT NULL, `age` INTEGER, `measures_taken` TEXT, `url_posts` TEXT NOT NULL, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -15,8 +15,8 @@
             "notNull": true
           },
           {
-            "fieldPath": "url",
-            "columnName": "url",
+            "fieldPath": "urlJson",
+            "columnName": "url_json",
             "affinity": "TEXT",
             "notNull": true
           },
@@ -70,7 +70,7 @@
           },
           {
             "fieldPath": "dateOfTest",
-            "columnName": "dateOfTest",
+            "columnName": "date_of_test",
             "affinity": "TEXT",
             "notNull": true
           },
@@ -78,6 +78,18 @@
             "fieldPath": "age",
             "columnName": "age",
             "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "measuresTaken",
+            "columnName": "measures_taken",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "urlPost",
+            "columnName": "url_posts",
+            "affinity": "TEXT",
             "notNull": true
           }
         ],
@@ -94,7 +106,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '5e3c6b69651aacf7beb0ae3cce013688')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'c39b49dd87675f180fb657bbe08f979d')"
     ]
   }
 }

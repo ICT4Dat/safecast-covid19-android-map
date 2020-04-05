@@ -4,6 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import at.ict4d.covid19map.ui.tabs.list.MapPostListFragment
 import at.ict4d.covid19map.ui.tabs.map.MapContainerFragment
 
 class TabContainerFragmentStateAdapter(
@@ -16,7 +17,7 @@ class TabContainerFragmentStateAdapter(
     override fun createFragment(position: Int): Fragment {
         return when (position) {
             0 -> MapContainerFragment.newInstance()
-            1 -> MapContainerFragment.newInstance()
+            1 -> MapPostListFragment.newInstance()
             else -> throw IllegalArgumentException("position tab not valid")
         }
     }
