@@ -8,6 +8,7 @@ plugins {
 }
 
 apply from: "$rootDir/gradle/google-maps-api-config.gradle" // handles Google Maps API key
+apply from: "$rootDir/gradle/release-sign-credentials.gradle" // handles signing of release version
 
 android {
     compileSdkVersion 29
@@ -32,6 +33,13 @@ android {
 
     signingConfigs {
 
+        release {
+            storeFile file(releaseSignCredLogic.props.getProperty(releaseSignCredLogic.configKeyStorePath, 'fillhere'))
+            storePassword releaseSignCredLogic.props.getProperty(releaseSignCredLogic.configKeystorePw)
+            keyAlias releaseSignCredLogic.props.getProperty(releaseSignCredLogic.configKeyAlias)
+            keyPassword releaseSignCredLogic.props.getProperty(releaseSignCredLogic.configKeyPw)
+        }
+
         debug {
             storeFile file("$project.rootDir/debug.keystore")
             storePassword "android"
@@ -42,7 +50,7 @@ android {
 
     buildTypes {
         release {
-
+            signingConfig signingConfigs.release
             minifyEnabled true
             shrinkResources true
             zipAlignEnabled true
