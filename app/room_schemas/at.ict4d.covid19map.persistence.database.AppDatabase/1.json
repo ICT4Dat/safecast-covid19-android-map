@@ -2,10 +2,10 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "a62fd5414b477bd9a99272ad9bbb83a2",
+    "identityHash": "c39b49dd87675f180fb657bbe08f979d",
     "entities": [
       {
-        "tableName": "safecast_map_data_set",
+        "tableName": "safecast_map_posts",
         "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `url_json` TEXT NOT NULL, `color` TEXT NOT NULL, `title` TEXT NOT NULL, `content` TEXT NOT NULL, `slug` TEXT NOT NULL, `locale` TEXT NOT NULL, `latitude` REAL NOT NULL, `longitude` REAL NOT NULL, `created` TEXT NOT NULL, `date_of_test` TEXT NOT NULL, `age` INTEGER, `measures_taken` TEXT, `url_posts` TEXT NOT NULL, PRIMARY KEY(`id`))",
         "fields": [
           {
@@ -106,7 +106,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'a62fd5414b477bd9a99272ad9bbb83a2')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'c39b49dd87675f180fb657bbe08f979d')"
     ]
   }
 }

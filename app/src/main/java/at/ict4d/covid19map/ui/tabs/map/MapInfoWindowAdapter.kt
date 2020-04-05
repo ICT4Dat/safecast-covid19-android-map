@@ -6,7 +6,7 @@ import android.view.View
 import androidx.databinding.DataBindingUtil
 import at.ict4d.covid19map.R
 import at.ict4d.covid19map.databinding.MapInfoWindowBinding
-import at.ict4d.covid19map.models.SafecastMapDataSet
+import at.ict4d.covid19map.models.SafecastMapPost
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.Marker
 
@@ -22,7 +22,7 @@ class MapInfoWindowAdapter(
     }
 
     override fun getInfoContents(marker: Marker?): View {
-        (marker?.tag as? SafecastMapDataSet)?.let { data ->
+        (marker?.tag as? SafecastMapPost)?.let { data ->
             binding.title.text = data.title
             binding.content.text = data.content
             binding.colorStrip.setBackgroundColor(Color.parseColor(data.color))

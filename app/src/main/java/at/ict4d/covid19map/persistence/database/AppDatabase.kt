@@ -4,8 +4,8 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverter
 import androidx.room.TypeConverters
-import at.ict4d.covid19map.models.SafecastMapDataSet
-import at.ict4d.covid19map.persistence.database.dao.SafecastMapDataSetDao
+import at.ict4d.covid19map.models.SafecastMapPost
+import at.ict4d.covid19map.persistence.database.dao.SafecastMapPostDao
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import org.koin.core.KoinComponent
@@ -21,13 +21,13 @@ const val DATABASE_NAME = "safecast_map_database"
     version = 1,
 
     entities = [
-        SafecastMapDataSet::class
+        SafecastMapPost::class
     ]
 )
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
 
-    abstract fun getSafecastMapDataSetDao(): SafecastMapDataSetDao
+    abstract fun getSafecastMapPostDao(): SafecastMapPostDao
 }
 
 class Converters : KoinComponent {

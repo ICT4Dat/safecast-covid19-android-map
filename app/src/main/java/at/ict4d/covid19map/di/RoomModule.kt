@@ -15,5 +15,5 @@ val roomModule = module {
             .build()
     }
 
-    single { get<AppDatabase>().getSafecastMapDataSetDao() }
+    single { get<AppDatabase>().getSafecastMapPostDao() }
 }

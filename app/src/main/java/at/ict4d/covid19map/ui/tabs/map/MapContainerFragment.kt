@@ -10,7 +10,7 @@ import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import at.ict4d.covid19map.R
 import at.ict4d.covid19map.databinding.MapContainerFragmentBinding
-import at.ict4d.covid19map.models.SafecastMapDataSet
+import at.ict4d.covid19map.models.SafecastMapPost
 import at.ict4d.covid19map.ui.base.BaseFragment
 import at.ict4d.covid19map.ui.tabs.TabContainerFragmentDirections
 import at.ict4d.covid19map.utils.browseCustomTab
@@ -145,7 +145,7 @@ class MapContainerFragment : BaseFragment<MapContainerFragmentBinding, MapContai
     }
 
     override fun onInfoWindowClick(marker: Marker?) {
-        (marker?.tag as? SafecastMapDataSet)?.let { data ->
+        (marker?.tag as? SafecastMapPost)?.let { data ->
             requireActivity().browseCustomTab(data.urlPost)
         }
     }
